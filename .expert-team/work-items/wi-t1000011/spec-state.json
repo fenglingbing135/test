@@ -2,14 +2,43 @@
   "schemaVersion": 2,
   "specId": "general-application-development-spec",
   "specRevision": 16,
-  "state": "requirements_ready",
-  "revision": 1,
+  "state": "design_ready",
+  "revision": 2,
   "completedActions": [
-    "requirements"
+    "requirements",
+    "design"
   ],
   "blockers": [],
   "scenarioId": "feature",
   "graphRevision": 5,
   "graphHash": "sha256:42bd6d37da9094899648e92d79bc2e77cd7eb268c0c1fe51a881c97cce967f3b",
-  "updatedAt": "2026-11-19T07:49:00.550Z"
+  "updatedAt": "2026-11-19T08:15:34.423Z",
+  "applicationProfile": {
+    "schemaVersion": 1,
+    "applicationType": "fullstack-complex",
+    "source": {
+      "artifactPath": "docs/wi-t1000011/requirements.md",
+      "sha256": "sha256:e909014bdf765dfbe7bba36e4b13508a59c0876d47d9ec969956ad0d8e0fa59f"
+    },
+    "reason": "已批准需求要求通过代码托管平台凭证拉取合并请求变更（外部服务集成，凭证必须由应用保存并在服务端使用，不能留在浏览器），并要求由 AI 对变更执行审核（外部模型服务调用、耗时后台执行与状态流转），同时需保留可回看的审核历史记录。这些能力超出纯浏览器静态前端的边界，按分类契约的默认歧义规则走完整路线。",
+    "evidence": {
+      "supporting": [
+        "4.1 MR 链接拉取：需按已配置的代码托管平台访问凭证拉取合并请求变更，属外部服务集成",
+        "4.1 平台凭证配置：凭证需在应用内保存、可修改与清除，不能在浏览器端明文持有并直接调用平台接口",
+        "4.2 审核执行：变更处于进行中/成功/失败状态流转，进行中允许离开页面稍后回看，属后台任务与持久化状态",
+        "4.1/4.2 拉取失败与审核失败需保留失败记录与失败原因，要求服务端持久化审核记录",
+        "4.4 审核历史：记录列表可回看与删除，脱离单次页面会话保留"
+      ],
+      "excluding": [
+        "无账号、登录与成员权限要求（第 6 节明确排除），因此不需要认证体系",
+        "不要求跨用户或跨设备共享数据，无多租户协作需求"
+      ],
+      "unresolved": [
+        "需支持的具体代码托管平台类型与凭证形式（需求第 7 节待确认项），设计需预留可配置的平台适配边界",
+        "单次可审核变更规模上限未规定，设计需保留可观察的失败反馈而非硬性阈值"
+      ]
+    },
+    "decidedAt": "2026-11-19T08:13:18.258Z",
+    "sha256": "sha256:4c33fc6bdd324fe00d428401648c839f97a69ed30397713ad8ef2b2c9c9e6915"
+  }
 }

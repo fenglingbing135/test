@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "design:2",
+  "receiptType": "architecture-plan",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "design",
+  "inputRevision": 1,
+  "stateVersion": 2,
+  "outcome": "passed",
+  "contentHash": "sha256:dd5533727fb3c0e2c77e888a2c23b839649b3c6b74fe0396f7014772fc368ed9",
+  "createdAt": "2026-11-19T08:15:34.423Z",
+  "timing": {
+    "startedAt": "2026-11-19T08:13:11.120Z",
+    "completedAt": "2026-11-19T08:15:34.423Z",
+    "durationMs": 143303
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000011/technical-contract.md",
+      "bytes": 10135,
+      "sha256": "sha256:a1733181e6a11ed4834b1514c1a14d689447a1cc264cce3101946b4d26a6217a",
+      "title": "技术契约"
+    },
+    {
+      "path": "docs/wi-t1000011/architecture-baseline.md",
+      "bytes": 16916,
+      "sha256": "sha256:4fc1a70c9918bc718d91e6dc910493693f3d93c375fe4b5bbd19b743f67be920",
+      "title": "系统设计"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "system-design-artifact-validator",
+      "status": "passed",
+      "detail": "以 fullstack-complex 路线产物运行校验，deliverables 为 architecture-baseline.md 与 technical-contract.md，failures 为空"
+    },
+    {
+      "checkId": "approved-requirements-alignment",
+      "status": "passed",
+      "detail": "设计仅承载需求基线的业务对象与状态，未新增需求外能力；第 7 节两个待确认项以可配置适配器与规模上限失败反馈方式承载"
+    },
+    {
+      "checkId": "design:application-route",
+      "status": "passed",
+      "applicationProfile": {
+        "applicationType": "fullstack-complex",
+        "routeId": "full",
+        "sha256": "sha256:4c33fc6bdd324fe00d428401648c839f97a69ed30397713ad8ef2b2c9c9e6915",
+        "path": ".expert-team/work-items/wi-t1000011/spec-state.json#/applicationProfile"
+      }
+    }
+  ]
+}
