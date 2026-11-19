@@ -1,0 +1,15 @@
+{
+  "workItemId": "wi-t1000011",
+  "applicationId": "application",
+  "applicationBaseline": {
+    "revision": 0,
+    "snapshotHash": null
+  },
+  "workItemType": "initial-build",
+  "title": "需求分析\n\n制定需求、划清范围\n\nOriginal task context (user-provided facts):\n\n{\"issueId\":\"28742711712423936\",\"code\":\"T1000011\",\"title\":\"需求分析\",\"description\":\"制定需求、划清范围\",\"priority\":\"critical\",\"labels\":[],\"kind\":\"feature\",\"acceptanceCriteria\":[],\"projectName\":\"AI审核代码\"}",
+  "request": "需求分析\n\n制定需求、划清范围\n\nOriginal task context (user-provided facts):\n\n{\"issueId\":\"28742711712423936\",\"code\":\"T1000011\",\"title\":\"需求分析\",\"description\":\"制定需求、划清范围\",\"priority\":\"critical\",\"labels\":[],\"kind\":\"feature\",\"acceptanceCriteria\":[],\"projectName\":\"AI审核代码\"}",
+  "status": "active",
+  "specId": "general-application-development-spec",
+  "revision": 0,
+  "createdAt": "2026-11-19T07:46:36.300Z"
+}

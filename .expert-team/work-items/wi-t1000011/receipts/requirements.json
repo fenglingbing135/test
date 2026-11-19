@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "requirements:1",
+  "receiptType": "requirements-baseline",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "requirements",
+  "inputRevision": 0,
+  "stateVersion": 1,
+  "outcome": "passed",
+  "contentHash": "sha256:2a6bf113cd742ece364c7a724e784ff27a114ff23a06dc49ce92ddc2efe7ccf8",
+  "createdAt": "2026-11-19T07:49:00.550Z",
+  "timing": {
+    "startedAt": "2026-11-19T07:46:36.729Z",
+    "completedAt": "2026-11-19T07:49:00.549Z",
+    "durationMs": 143820
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000011/requirements.md",
+      "bytes": 10206,
+      "sha256": "sha256:e909014bdf765dfbe7bba36e4b13508a59c0876d47d9ec969956ad0d8e0fa59f",
+      "title": "AI 审核代码 — 需求基线"
+    }
+  ],
+  "verification": [
+    {
+      "checkId": "artifact-written",
+      "status": "passed"
+    },
+    {
+      "checkId": "user-confirmed-scope-captured",
+      "status": "passed"
+    },
+    {
+      "checkId": "acceptance-coverage",
+      "status": "passed"
+    },
+    {
+      "checkId": "scope-boundary-excluded",
+      "status": "passed"
+    }
+  ]
+}
