@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 1,
+  "revision": 6,
+  "attempts": [
+    {
+      "attempt": 1,
+      "planId": "plan:81df26b4-843a-41b7-afbd-acdd7f91d799",
+      "taskId": "T01",
+      "status": "terminal",
+      "requestId": "cli:prepare:T01:1cd139e7-bde4-4721-af5a-02a2be658b58",
+      "createdAt": "2026-11-19T08:21:37.502Z",
+      "executionId": "ses_e0d1a4b45ffeT7YzFFGu08O7n2",
+      "outcome": "completed"
+    },
+    {
+      "attempt": 1,
+      "planId": "plan:81df26b4-843a-41b7-afbd-acdd7f91d799",
+      "taskId": "T02",
+      "status": "terminal",
+      "requestId": "cli:prepare:T02:f5f61411-7bf0-47de-9477-267d1b9ad104",
+      "createdAt": "2026-11-19T08:29:39.388Z",
+      "executionId": "ses_e0d12f395ffejG1wkS8Wwh375c",
+      "outcome": "completed"
+    }
+  ],
+  "receipts": [
+    {
+      "planId": "plan:81df26b4-843a-41b7-afbd-acdd7f91d799",
+      "taskId": "T01",
+      "attempt": 1,
+      "executionId": "ses_e0d1a4b45ffeT7YzFFGu08O7n2",
+      "outcome": "completed",
+      "result": {
+        "status": "completed",
+        "artifacts": [
+          {
+            "path": "package.json",
+            "bytes": 832,
+            "sha256": "sha256:0053c1e30356cde40eeaafabeca1cebcdff495587b0b690b4464dd491886ec7c"
+          },
+          {
+            "path": "package-lock.json",
+            "bytes": 96318,
+            "sha256": "sha256:57a1be5a6eef66f7267d7f002970714b555ba595eccc66bc259623a1468b72b8"
+          },
+          {
+            "path": "src/server.js",
+            "bytes": 6094,
+            "sha256": "sha256:782461a5cd0d586bc5f2feecb8a0cdacbe76e2197a6d83e225ffba4a71e8b1d8"
+          },
+          {
+            "path": "src/server/",
+            "bytes": 54651,
+            "sha256": "sha256:3a80cb238a490fd0d8b1a88898a4ae64795ba1ab28fb31ecb78631a1a1850946"
+          },
+          {
+            "path": "scripts/",
+            "bytes": 26774,
+            "sha256": "sha256:f17d2790bd26f229b49d9a7d97f45debfc2f37d9441a5ebdaaba583b158d0ab3"
+          }
+        ],
+        "verification": [
+          {
+            "checkId": "install-dependencies-and-lockfile",
+            "status": "passed",
+            "command": "npm install --no-audit --no-fund --cache \"<workspace>/scripts/.verify-tmp/npm-cache\"",
+            "exitCode": 0
+          },
+          {
+            "checkId": "syntax-check-server-and-scripts",
+            "status": "passed",
+            "command": "node --check <each of src/server.js, src/server/**, scripts/verify-api.mjs>",
+            "exitCode": 0
+          },
+          {
+            "checkId": "api-acceptance-verify",
+            "status": "passed",
+            "command": "npm run verify",
+            "exitCode": 0
+          },
+          {
+            "checkId": "default-mode-live-review-without-ai-config",
+            "status": "passed",
+            "command": "node scripts/.verify-tmp/smoke-live.mjs",
+            "exitCode": 0
+          },
+          {
+            "checkId": "platform-adapters-and-engine-contract",
+            "status": "passed",
+            "command": "node scripts/.verify-tmp/smoke-adapters.mjs",
+            "exitCode": 0
+          }
+        ]
+      },
+      "createdAt": "2026-11-19T08:29:39.083Z"
+    },
+    {
+      "planId": "plan:81df26b4-843a-41b7-afbd-acdd7f91d799",
+      "taskId": "T02",
+      "attempt": 1,
+      "executionId": "ses_e0d12f395ffejG1wkS8Wwh375c",
+      "outcome": "completed",
+      "result": {
+        "artifacts": [
+          {
+            "path": "src/web/",
+            "bytes": 95086,
+            "sha256": "sha256:c7df260080924574470e3a236054176d6fe26b28a0bc062fefbaf3689a432a45"
+          },
+          {
+            "path": "index.html",
+            "bytes": 481,
+            "sha256": "sha256:33bbaf4090806861c273bcf9bfedee78bb899072845d6dcf1c22a764b05547dc"
+          },
+          {
+            "path": "vite.config.ts",
+            "bytes": 757,
+            "sha256": "sha256:84a7cd88f80e25031394a174bc961f0123440099e339a1a1ded5b3c0e486553f"
+          },
+          {
+            "path": "tsconfig.json",
+            "bytes": 572,
+            "sha256": "sha256:4e60725e8e01520fd5843142f32f472f7858ec19a010b5e9b6b76056c5c44534"
+          }
+        ],
+        "status": "completed",
+        "verification": [
+          {
+            "checkId": "typecheck",
+            "status": "passed",
+            "command": "npx tsc --noEmit",
+            "exitCode": 0
+          },
+          {
+            "checkId": "build",
+            "status": "passed",
+            "command": "npm run build",
+            "exitCode": 0
+          },
+          {
+            "checkId": "spa-static-serving",
+            "status": "passed",
+            "command": "node --input-type=module (createApp distDir=dist: GET / => 200 text/html, GET /history/abc => 200, GET /assets/index-BGOPppns.js => 200 text/javascript, GET /api/health => 200)",
+            "exitCode": 0
+          },
+          {
+            "checkId": "form-validation-logic",
+            "status": "passed",
+            "command": "npx esbuild src/web/src/utils/validation.ts --format=esm --loader:.ts=ts | node --input-type=module (14 项断言：diff/代码片段可识别性、GitHub/GitLab 链接解析、实例地址校验)",
+            "exitCode": 0
+          },
+          {
+            "checkId": "api-verify-suite/non-api-path-404-without-build",
+            "status": "failed",
+            "command": "npm run verify",
+            "exitCode": 1
+          }
+        ]
+      },
+      "createdAt": "2026-11-19T08:38:50.870Z"
+    }
+  ],
+  "repairs": [],
+  "blockers": [],
+  "operations": [
+    {
+      "requestId": "cli:prepare:T01:1cd139e7-bde4-4721-af5a-02a2be658b58",
+      "actorId": "expert-team-coordinator",
+      "operation": "prepare",
+      "taskId": "T01",
+      "result": {
+        "applied": true,
+        "envelope": {
+          "schemaVersion": 1,
+          "workItemId": "wi-t1000011",
+          "planId": "plan:81df26b4-843a-41b7-afbd-acdd7f91d799",
+          "taskId": "T01",
+          "attempt": 1,
+          "summary": "建立应用基础与服务端审核能力",
+          "objective": "## 目标\n\n在空白仓库中建立可运行的 AI 审核工作台基础与服务端能力：单进程 Hono 服务、目录型文件存储、串行审核队列、OpenAI 兼容模型调用、GitHub/GitLab 变更拉取适配器、确定性测试实现与启动恢复。\n\n## 范围\n\n- 应用基础：根 `package.json`（含 `dev:web`、`dev:server`、`build`、`start`、`verify` 脚本，以及服务端与前端各自所需的依赖声明）、`package-lock.json`、`.gitignore`、`README.md`。\n- 服务端按 `docs/wi-t1000011/architecture-baseline.md` 第 2.1 节的模块职责落地；接口字段、错误码与状态迁移以 `docs/wi-t1000011/technical-contract.md` 为准，不在本任务重复定义字段清单。\n- 实现 `REVIEW_ENGINE=stub`、`PLATFORM_FETCH_MODE=stub`、`REVIEW_STEP_DELAY_MS` 三个只从服务端环境变量读取的确定性开关，供后续验收使用；默认值不改变产品行为。\n- 前端产物尚未构建时服务端仍可启动：非 `/api` 请求按 404 处理，不因缺少 `dist/` 崩溃。\n- `scripts/` 下提供 API 级验收脚本，使用独立临时 `DATA_DIR` 与空闲端口自启自清，覆盖健康检查、凭证保存与脱敏读取及清除、粘贴创建并推进到成功、链接模式失败原因与不产生记录、失败重试、记录删除、启动时中断记录恢复。\n\n## 交付边界\n\n- 不实现 `src/web/`、`index.html`、`vite.config.ts`、`tsconfig.json`；前端由后续任务完成。\n- `data/` 为运行时产物，不提交业务数据文件。\n\n## 验证\n\n- 运行 `npm install` 生成锁文件后启动服务，执行上述验收脚本并报告真实结果；补充 `node --check` 一类的启动与语法检查。\n- 报告未能覆盖的场景（例如真实平台与真实模型调用）作为残余风险，不宣称已验证。",
+          "requirementIds": [
+            "AC-01",
+            "AC-02",
+            "AC-03",
+            "AC-04",
+            "AC-05",
+            "AC-06"
+          ],
+          "capabilityId": "engineering.implementation",
+          "expertId": "general-app-development-expert",
+          "executionMode": "spawn_task",
+          "taskKind": "implement",
+          "agentName": "general",
+          "expertDisplayName": {
+            "en": "General Application Dev Agent",
+            "zh": "通用应用开发智能体",
+            "zht": "通用應用程式開發智能體"
+          },
+          "inputArtifacts": [
+            {
+              "path": "docs/wi-t1000011/requirements.md",
+              "sha256": "sha256:e909014bdf765dfbe7bba36e4b13508a59c0876d47d9ec969956ad0d8e0fa59f"
+            },
+            {
+              "path": "docs/wi-t1000011/architecture-baseline.md",
+              "sha256": "sha256:4fc1a70c9918bc718d91e6dc910493693f3d93c375fe4b5bbd19b743f67be920"
+            },
+            {
+              "path": "docs/wi-t1000011/technical-contract.md",
+              "sha256": "sha256:a1733181e6a11ed4834b1514c1a14d689447a1cc264cce3101946b4d26a6217a"
+            }
+          ],
+          "writableScopes": [
+            "package.json",
+            "package-lock.json",
+            "src/server.js",
+            "src/server/",
+            "scripts/",
+            "README.md",
+            ".gitignore"
+          ],
+          "resourceKeys": [],
+          "artifactPaths": [
+            "package.json",
+            "package-lock.json",
+            "src/server.js",
+            "src/server/",
+            "scripts/"
+          ],
+          "expectedOutput": {
+            "artifactPaths": [
+              "package.json",
+              "package-lock.json",
+              "src/server.js",
+              "src/server/",
+              "scripts/"
+            ]
+          },
+          "failurePolicy": "block",
+          "blockerCodes": [
+            "TASK_FAILED"
+          ]
+        }
+      },
+      "createdAt": "2026-11-19T08:21:37.502Z"
+    },
+    {
+      "requestId": "cli:submit:T01:c5716241-e520-4eee-968c-4787824e825b",
+      "actorId": "expert-team-coordinator",
+      "operation": "submit",
+      "taskId": "T01",
+      "result": {
+        "applied": true,
+        "state": "running"
+      },
+      "createdAt": "2026-11-19T08:21:45.271Z"
+    },
+    {
+      "requestId": "cli:complete:T01:072fc030-94a1-4120-b144-2f023be427c8",
+      "actorId": "expert-team-coordinator",
+      "operation": "complete",
+      "taskId": "T01",
+      "result": {
+        "applied": true,
+        "state": "running",
+        "result": {
+          "status": "completed",
+          "artifacts": [
+            {
+              "path": "package.json",
+              "bytes": 832,
+              "sha256": "sha256:0053c1e30356cde40eeaafabeca1cebcdff495587b0b690b4464dd491886ec7c"
+            },
+            {
+              "path": "package-lock.json",
+              "bytes": 96318,
+              "sha256": "sha256:57a1be5a6eef66f7267d7f002970714b555ba595eccc66bc259623a1468b72b8"
+            },
+            {
+              "path": "src/server.js",
+              "bytes": 6094,
+              "sha256": "sha256:782461a5cd0d586bc5f2feecb8a0cdacbe76e2197a6d83e225ffba4a71e8b1d8"
+            },
+            {
+              "path": "src/server/",
+              "bytes": 54651,
+              "sha256": "sha256:3a80cb238a490fd0d8b1a88898a4ae64795ba1ab28fb31ecb78631a1a1850946"
+            },
+            {
+              "path": "scripts/",
+              "bytes": 26774,
+              "sha256": "sha256:f17d2790bd26f229b49d9a7d97f45debfc2f37d9441a5ebdaaba583b158d0ab3"
+            }
+          ],
+          "verification": [
+            {
+              "checkId": "install-dependencies-and-lockfile",
+              "status": "passed",
+              "command": "npm install --no-audit --no-fund --cache \"<workspace>/scripts/.verify-tmp/npm-cache\"",
+              "exitCode": 0
+            },
+            {
+              "checkId": "syntax-check-server-and-scripts",
+              "status": "passed",
+              "command": "node --check <each of src/server.js, src/server/**, scripts/verify-api.mjs>",
+              "exitCode": 0
+            },
+            {
+              "checkId": "api-acceptance-verify",
+              "status": "passed",
+              "command": "npm run verify",
+              "exitCode": 0
+            },
+            {
+              "checkId": "default-mode-live-review-without-ai-config",
+              "status": "passed",
+              "command": "node scripts/.verify-tmp/smoke-live.mjs",
+              "exitCode": 0
+            },
+            {
+              "checkId": "platform-adapters-and-engine-contract",
+              "status": "passed",
+              "command": "node scripts/.verify-tmp/smoke-adapters.mjs",
+              "exitCode": 0
+            }
+          ]
+        }
+      },
+      "createdAt": "2026-11-19T08:29:39.083Z"
+    },
+    {
+      "requestId": "cli:prepare:T02:f5f61411-7bf0-47de-9477-267d1b9ad104",
+      "actorId": "expert-team-coordinator",
+      "operation": "prepare",
+      "taskId": "T02",
+      "result": {
+        "applied": true,
+        "envelope": {
+          "schemaVersion": 1,
+          "workItemId": "wi-t1000011",
+          "planId": "plan:81df26b4-843a-41b7-afbd-acdd7f91d799",
+          "taskId": "T02",
+          "attempt": 1,
+          "summary": "实现审核工作台前端界面",
+          "objective": "## 目标\n\n实现 React 18 + TypeScript + Vite 工作台前端，消费已实现的服务端接口完成新建审核、审核历史、结果详情与平台设置的完整交互。\n\n## 范围\n\n- 按 `docs/wi-t1000011/architecture-baseline.md` 第 1.3 节全局 UI 基线与 2.2 节前端模块实现应用壳、四个页面与展示组件。\n- 接口类型、字段与错误码到文案的映射以 `docs/wi-t1000011/technical-contract.md` 为准；不自行发明接口行为或本地推断审核结果。\n- 交付 `src/web/`（入口、应用壳、页面、组件、`api` 客户端与类型声明）、根 `index.html`、`vite.config.ts`（开发期将 `/api` 代理到服务端 `PORT`，构建输出 `dist/`）、`tsconfig.json`。\n- 关键状态需在界面上可区分：审核进行中定时刷新（1.5 秒，进入终态停止）、未发现问题、审核失败原因与重新发起、拉取失败就地提示、凭证未配置跳转设置、列表加载骨架与空态。\n\n## 交付边界\n\n- 不修改 `package.json`、`package-lock.json` 与 `src/server/`；若前端依赖在共享清单中缺失，向本阶段报告阻塞，不自行改写共享清单。\n\n## 验证\n\n- 运行 `npx tsc --noEmit` 与 `npm run build`，确认类型检查通过且构建产物落在 `dist/`。\n- 报告真实结果，并说明未覆盖的运行期交互与视觉项。",
+          "requirementIds": [
+            "AC-01",
+            "AC-02",
+            "AC-03",
+            "AC-04",
+            "AC-05",
+            "AC-06"
+          ],
+          "capabilityId": "engineering.implementation",
+          "expertId": "general-app-development-expert",
+          "executionMode": "spawn_task",
+          "taskKind": "implement",
+          "agentName": "general",
+          "expertDisplayName": {
+            "en": "General Application Dev Agent",
+            "zh": "通用应用开发智能体",
+            "zht": "通用應用程式開發智能體"
+          },
+          "inputArtifacts": [
+            {
+              "path": "docs/wi-t1000011/requirements.md",
+              "sha256": "sha256:e909014bdf765dfbe7bba36e4b13508a59c0876d47d9ec969956ad0d8e0fa59f"
+            },
+            {
+              "path": "docs/wi-t1000011/architecture-baseline.md",
+              "sha256": "sha256:4fc1a70c9918bc718d91e6dc910493693f3d93c375fe4b5bbd19b743f67be920"
+            },
+            {
+              "path": "docs/wi-t1000011/technical-contract.md",
+              "sha256": "sha256:a1733181e6a11ed4834b1514c1a14d689447a1cc264cce3101946b4d26a6217a"
+            },
+            {
+              "path": "package.json",
+              "producerTaskId": "T01",
+              "sha256": "sha256:0053c1e30356cde40eeaafabeca1cebcdff495587b0b690b4464dd491886ec7c"
+            }
+          ],
+          "writableScopes": [
+            "src/web/",
+            "index.html",
+            "vite.config.ts",
+            "tsconfig.json"
+          ],
+          "resourceKeys": [],
+          "artifactPaths": [
+            "src/web/",
+            "index.html",
+            "vite.config.ts",
+            "tsconfig.json"
+          ],
+          "expectedOutput": {
+            "artifactPaths": [
+              "src/web/",
+              "index.html",
+              "vite.config.ts",
+              "tsconfig.json"
+            ]
+          },
+          "failurePolicy": "block",
+          "blockerCodes": [
+            "TASK_FAILED"
+          ]
+        }
+      },
+      "createdAt": "2026-11-19T08:29:39.388Z"
+    },
+    {
+      "requestId": "cli:submit:T02:2598f01b-a443-4d9d-9680-15121862e2bd",
+      "actorId": "expert-team-coordinator",
+      "operation": "submit",
+      "taskId": "T02",
+      "result": {
+        "applied": true,
+        "state": "running"
+      },
+      "createdAt": "2026-11-19T08:29:46.495Z"
+    },
+    {
+      "requestId": "cli:complete:T02:2f6bbe30-77a4-47aa-a02d-e77ce269f176",
+      "actorId": "expert-team-coordinator",
+      "operation": "complete",
+      "taskId": "T02",
+      "result": {
+        "applied": true,
+        "state": "running",
+        "result": {
+          "artifacts": [
+            {
+              "path": "src/web/",
+              "bytes": 95086,
+              "sha256": "sha256:c7df260080924574470e3a236054176d6fe26b28a0bc062fefbaf3689a432a45"
+            },
+            {
+              "path": "index.html",
+              "bytes": 481,
+              "sha256": "sha256:33bbaf4090806861c273bcf9bfedee78bb899072845d6dcf1c22a764b05547dc"
+            },
+            {
+              "path": "vite.config.ts",
+              "bytes": 757,
+              "sha256": "sha256:84a7cd88f80e25031394a174bc961f0123440099e339a1a1ded5b3c0e486553f"
+            },
+            {
+              "path": "tsconfig.json",
+              "bytes": 572,
+              "sha256": "sha256:4e60725e8e01520fd5843142f32f472f7858ec19a010b5e9b6b76056c5c44534"
+            }
+          ],
+          "status": "completed",
+          "verification": [
+            {
+              "checkId": "typecheck",
+              "status": "passed",
+              "command": "npx tsc --noEmit",
+              "exitCode": 0
+            },
+            {
+              "checkId": "build",
+              "status": "passed",
+              "command": "npm run build",
+              "exitCode": 0
+            },
+            {
+              "checkId": "spa-static-serving",
+              "status": "passed",
+              "command": "node --input-type=module (createApp distDir=dist: GET / => 200 text/html, GET /history/abc => 200, GET /assets/index-BGOPppns.js => 200 text/javascript, GET /api/health => 200)",
+              "exitCode": 0
+            },
+            {
+              "checkId": "form-validation-logic",
+              "status": "passed",
+              "command": "npx esbuild src/web/src/utils/validation.ts --format=esm --loader:.ts=ts | node --input-type=module (14 项断言：diff/代码片段可识别性、GitHub/GitLab 链接解析、实例地址校验)",
+              "exitCode": 0
+            },
+            {
+              "checkId": "api-verify-suite/non-api-path-404-without-build",
+              "status": "failed",
+              "command": "npm run verify",
+              "exitCode": 1
+            }
+          ]
+        }
+      },
+      "createdAt": "2026-11-19T08:38:50.870Z"
+    }
+  ]
+}

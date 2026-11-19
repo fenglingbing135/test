@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 2,
+  "receiptId": "implementation:3",
+  "receiptType": "implementation-report",
+  "specId": "general-application-development-spec",
+  "graphRevision": 5,
+  "actionId": "implementation",
+  "inputRevision": 2,
+  "stateVersion": 3,
+  "outcome": "passed",
+  "contentHash": "sha256:9a4007aed799ecbbfd6bf614363acc7ef6fc6fca23c1ae79f9dc93f1a738d585",
+  "createdAt": "2026-11-19T08:39:53.712Z",
+  "timing": {
+    "startedAt": "2026-11-19T08:20:29.981Z",
+    "completedAt": "2026-11-19T08:39:53.711Z",
+    "durationMs": 1163730
+  },
+  "artifacts": [
+    {
+      "path": "docs/wi-t1000011/implementation-report.md",
+      "bytes": 7163,
+      "sha256": "sha256:3357d73efa4c8fcc0296ba9da8a898522b3aa31287d51780613b30ca82792c28",
+      "title": "开发实现报告"
+    }
+  ],
+  "url": "http://127.0.0.1:4317/",
+  "verification": [
+    {
+      "checkId": "install-dependencies-and-lockfile",
+      "status": "passed"
+    },
+    {
+      "checkId": "syntax-check-server-and-scripts",
+      "status": "passed"
+    },
+    {
+      "checkId": "api-acceptance-verify",
+      "status": "passed"
+    },
+    {
+      "checkId": "default-mode-live-review-without-ai-config",
+      "status": "passed"
+    },
+    {
+      "checkId": "platform-adapters-and-engine-contract",
+      "status": "passed"
+    },
+    {
+      "checkId": "typecheck",
+      "status": "passed"
+    },
+    {
+      "checkId": "build",
+      "status": "passed"
+    },
+    {
+      "checkId": "spa-static-serving",
+      "status": "passed"
+    },
+    {
+      "checkId": "form-validation-logic",
+      "status": "passed"
+    },
+    {
+      "checkId": "api-verify-suite/non-api-path-404-without-build",
+      "status": "failed"
+    },
+    {
+      "checkId": "implementation:application-route",
+      "status": "passed",
+      "applicationProfile": {
+        "applicationType": "fullstack-complex",
+        "routeId": "plan",
+        "sha256": "sha256:4c33fc6bdd324fe00d428401648c839f97a69ed30397713ad8ef2b2c9c9e6915",
+        "path": ".expert-team\\work-items\\wi-t1000011\\spec-state.json#/applicationProfile"
+      }
+    }
+  ]
+}
