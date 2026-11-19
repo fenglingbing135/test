@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "actionId": "verification",
+  "status": "unknown",
+  "code": "QA_ENVIRONMENT_BLOCKED",
+  "blockedReason": {
+    "code": "environment-unavailable",
+    "details": "本轮浏览器自动化能力不可用：agent_browser 的 open / snapshot -i / verify site 连续返回 status=stale-connection、failure=blocked_environment，页面无法加载或读取，已按要求停止该项而不反复重试。应用服务本身可用（http://127.0.0.1:8899/api/health 返回 status=ok、reviewEngine=stub、platformFetchMode=stub，根路径 200 返回 HTML）。下一步需在可用的预览浏览器环境中重跑本阶段浏览器验收；当前报告保留 blocked 结论，不据此判定产品失败。",
+    "checkIds": [
+      "QA-01",
+      "QA-02",
+      "QA-03",
+      "QA-04",
+      "QA-05",
+      "QA-06"
+    ]
+  },
+  "evaluatorId": "quality.verification",
+  "evaluatorVersion": 1,
+  "sourceReceiptId": "verification:4",
+  "sourceArtifactSha256": "sha256:3f5daee7243be0c31866ffeb6ca83493b136e5a2ad24d1a084722b8ef8e39659",
+  "validator": "tools/quality-report-validator.mjs",
+  "evaluatedAt": "2026-11-19T09:45:47.746Z"
+}
